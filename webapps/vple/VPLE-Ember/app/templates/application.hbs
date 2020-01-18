@@ -1,0 +1,8 @@
+<div class="w3-bar w3-border w3-green">
+    <a href="#" class="w3-bar-item w3-button">Home</a>
+    {{#each tabs as |tab|}}
+        <a href={{tab.URL}} class="w3-bar-item w3-button">{{tab.DISPLAY_NAME}}</a>
+    {{/each}}
+    <a href="#" class="w3-bar-item w3-button w3-green w3-right" {{action "logout"}}>Logout</a>
+</div>
+{{outlet}}

@@ -1,0 +1,60 @@
+{{outlet}}
+{{#if examsAvailable}}
+<div class="w3-container">
+    <div class="w3-panel w3-border w3-light-grey w3-round-large">
+        <ul>
+            <li>Each assignment is associated with a score. A perfect submission of the assignment will result in
+                maximum possible score for the respective assignment.</li>
+            <li>The examination is alloted a finite amount of time and the candidates are expected to complete the exam
+                within that time.</li>
+            <li>Only submiteed assignments will be alloted scores, hence make sure that assignments are submitted
+                before the session ends</li>
+            <li>The candidates may need to select the Programming-Language for each assignment.</li>
+            <li>The examination center is monitored through CCTV cameras and the exam-coordinators.</li>
+            <li>Malpractices are strictly prohibited. Any candidate guilty of any malpractice will be penalized or
+                punished.</li>
+        </ul>
+    </div>
+    <p class="w3-center"><button class="w3-button w3-green w3-center" {{action "startExam"}}>Start Exam</button></p>
+</div>
+{{else if examStarted}}
+<div class="w3-content w3-display-container" style="margin-bottom:100px;">
+    {{#each exam_questions as |question|}}
+    <div class="w3-container w3-margin-top questionSlide" id={{question.QUESTION_ID}}>
+        <div class="w3-card-4 w3-padding">
+            <div class="w3-container">
+                <h4><strong>Description</strong></h4>
+                <p>{{{question.DESCRIPTION}}}</p>
+                <h4><strong>Score: </strong>{{question.SCORE}} Marks</h4>
+            </div>
+            <div class="w3-panel w3-card w3-light-grey w3-padding">
+                <div class="w3-left"><h4>Solution: </h4></div>
+                <div class="w3-margin w3-right">
+                    <label for="languages">Select Language: </label>
+                    <select class="form-control" id="languages">
+                        <option id="0">C</option>
+                        <option id="1">C++</option>
+                    </select>
+                </div>
+                <textarea rows="22" cols="98" class="w3-input w3-border" id="solution_{{question.QUESTION_ID}}"></textarea>
+                <div class="w3-right-align w3-margin">
+                    <button class="w3-btn w3-white" {{action "runCode" question.QUESTION_ID}}>Run</button>
+                    <button class="w3-btn w3-green" {{action "saveCode" question}}>Submit Code</button>
+                </div>
+                <p>
+                    <h5><strong>Result:</strong></h5>
+                </p>
+                <textarea disabled class="w3-input w3-border" id="result_{{question.QUESTION_ID}}" rows="6"/>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    <button class="w3-button w3-black w3-display-left" {{action "nextOrPrevQuestion" -1}}>&#10094;</button>
+    <button class="w3-button w3-black w3-display-right" {{action "nextOrPrevQuestion" 1}}>&#10095;</button>
+</div>
+<div></div>
+{{else}}
+    <div class="w3-border w3-center w3-margin w3-padding w3-panel">
+        <i class="fa fa-3x fa-warning"></i><p class="">Oops! No exams available for you.</p>
+    </div>
+{{/if}}

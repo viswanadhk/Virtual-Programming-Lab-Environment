@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VPLE">
+    <output-path>D:/Temp Workspaces/Manikanta's Project/apache-tomcat-9.0.13-windows-x64/webapps/vple/WEB-INF/lib</output-path>
+    <root id="archive" name="VPLE.jar">
+      <element id="module-output" name="VPLE-Java" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

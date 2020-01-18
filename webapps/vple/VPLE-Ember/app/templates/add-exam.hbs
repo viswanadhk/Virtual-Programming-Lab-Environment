@@ -1,0 +1,92 @@
+{{outlet}}
+{{#if addExamFormLoaded}}
+    <div class="w3-card-4 w3-margin">
+        <form id="regForm" class="w3-container">
+            <div class="tab hide">
+                <p>
+                    <label class="w3-text-green"><b>Exam ID</b></label>
+                    <input class="w3-input w3-border w3-sand" id="exam_id" type="text">
+                </p>
+                <p>
+                    <label class="w3-text-green"><b>Exam Name</b></label>
+                    <input class="w3-input w3-border w3-sand" id="exam_name" type="text">
+                </p>
+                <p>
+                    <label class="w3-text-green"><b>Duration</b></label>
+                    <input class="w3-input w3-border w3-sand" id="duration" type="text">
+                </p>
+                <p>
+                    <label class="w3-text-green"><b>No of Questions</b></label>
+                    <input class="w3-input w3-border w3-sand" id="no_of_questions" type="number">
+                </p>
+            </div>
+            <div class="tab hide">
+                <button id="saveAndAdd" class="w3-btn w3-green w3-margin w3-right" {{action "saveAndAdd"}}>Save & Add another</button>
+                <p>
+                    <label class="w3-text-green"><b>Description</b></label>
+                    <textarea class="w3-input w3-border w3-sand" id="description"></textarea>
+                </p>
+                <p>
+                    <label class="w3-text-green"><b>Test Cases</b></label>
+                    <textarea class="w3-input w3-border w3-sand" id="test_cases"></textarea>
+                </p>
+                <p>
+                    <label class="w3-text-green"><b>Expected Output</b></label>
+                    <textarea class="w3-input w3-border w3-sand" id="expected_output"></textarea>
+                </p>
+                <p>
+                    <label class="w3-text-green"><b>Score</b></label>
+                    <input class="w3-input w3-border w3-sand" id="score" type="number">
+                </p>
+            </div>
+            <div class="tab hide">
+                <div>
+                    <table class="w3-table-all">
+                        <thead>
+                            <tr class="w3-light-grey">
+                                <th>Action</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        {{#each students as |student|}}
+                            <tr>
+                                <td><input class="w3-check" type="checkbox" id={{student.STUDENT_ID}}></td>
+                                <td>{{student.FIRST_NAME}}</td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+            <div class="w3-right w3-margin">
+                <button id="prevBtn" class="w3-btn w3-green" {{action "nextPrev" -1}}>Previous</button>
+                <button id="nextBtn" class="w3-btn w3-green" {{action "nextPrev" 1}}>Next</button>
+            </div>
+        </form>
+    </div>
+{{else}}
+    <div class="w3-container">
+        <p><button class="w3-button w3-green w3-right w3-margin-bottom" {{action "toggleExamForm"}}>Add Exam</button></p>
+        <table class="w3-table-all w3-card-4">
+            <tr class="w3-green">
+                <th>Exam ID</th>
+                <th>Exam Name</th>
+                <th>Duration</th>
+                <th>Questions</th>
+            </tr>
+            {{#if exams}}
+                {{#each exams as |exam|}}
+                    <tr>
+                        <td>{{exam.EXAM_ID}}</td>
+                        <td>{{exam.EXAM_NAME}}</td>
+                        <td>{{exam.DURATION}}</td>
+                        <td>{{exam.NO_OF_QUESTIONS}}</td>
+                    </tr>
+                {{/each}}
+            {{else}}
+                <tr>
+                    <td colspan="4" class="w3-center">No data available</td>
+                </tr>
+            {{/if}}
+        </table>
+    </div>
+{{/if}}
